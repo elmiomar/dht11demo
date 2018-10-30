@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+		<title>DHT11 Sensor Data</title>
+		<link rel="stylesheet" href="../static/css/styles.css"/>
+		<link rel="stylesheet" href="../static/css/material.min.css"/>
+		<script src="../static/js/material.min.js"></script>
+		<script src="../static/js/raphael-2.1.4.min.js"></script>
+		<script src="../static/js/justgage.js"></script>
+	</head>
+	<body>
+		<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+		  <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+			<div class="mdl-layout__header-row">
+			  <span class="mdl-layout-title">DHT11 Sensor Data</span>
+			</div>
+		  </header>
+		  <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+			<header class="demo-drawer-header">
+			  
+			</header>
+			<nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+			  <a class="mdl-navigation__link" href="/">Real-Time Data</a>
+			  <a class="mdl-navigation__link" href="">Historical Data</a>
+			</nav>
+		  </div>
+		  <main class="mdl-layout__content mdl-color--grey-100">
+			
+			<div class="mdl-grid demo-content">
+			  
+				
+			  <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-grid" style="justify-content: center;">
+				<div id="gaugeTemperature" style="width:400px; height:320px" class="demo-chart mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop"></div>
+			  </div>
+			  <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-grid" style="justify-content: center;">
+				<div id="gaugeHumidity" style="width:400px; height:320px" class="demo-chart mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop"></div>
+			  </div>
+			  
+			  <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+				<p class="mdl-cell mdl-cell--12-col"> Last refreshed: {{timestamp}}</p>
+				<a href="/"  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-cell mdl-cell--2-col">Update</a>
+			  </div>
+			  
+			  <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col">
+				<svg fill="currentColor" viewBox="0 0 500 250" class="demo-graph">
+				  <use xlink:href="#chart" />
+				</svg>
+				<svg fill="currentColor" viewBox="0 0 500 250" class="demo-graph">
+				  <use xlink:href="#chart" />
+				</svg>
+			  </div>
+			</div>
+		  </main>
+		</div>
+		<script>
+		  var g = new JustGage({
+			id: "gaugeTemperature",
+			value: {{temperature}},
+			min: -10,
+			max: 50,
+			title: "Temperature",
+			label:"°C"
+		  });
+		  var g = new JustGage({
+			id: "gaugeHumidity",
+			value: {{humidity}},
+			min: 0,
+			max: 100,
+			title: "Humidity",
+			label: "%"
+		  });
+		</script>
+		<script src="../static/js/material.min.js"></script>
+	</body>
+</html>
