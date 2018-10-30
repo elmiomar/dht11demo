@@ -20,18 +20,28 @@
 		  </header>
 		  <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
 			<header class="demo-drawer-header">
-			  
+				<div class="mdl-grid">
+					<p>Hello there, this is data retrieved from a DHT11 sensor.</p>
+					<p>Click on the "UPDATE" button to get fresh data.</p>
+					<p>You can also query historical data using one of the two options:
+						<ul>
+							<li>Number of samples</li>
+							<li>Time range</li>
+						</ul>
+					</p>
+					
+				</div>
 			</header>
-			<nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-			  <a class="mdl-navigation__link" href="/">Real-Time Data</a>
-			  <a class="mdl-navigation__link" href="">Historical Data</a>
-			</nav>
 		  </div>
 		  <main class="mdl-layout__content mdl-color--grey-100">
 			
 			<div class="mdl-grid demo-content">
 			  
-				
+			  <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+				<p class="mdl-cell mdl-cell--12-col"> Last refreshed: {{timestamp}}</p>
+				<a href="/"  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-cell mdl-cell--2-col">Update</a>
+			  </div>
+			  
 			  <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-grid" style="justify-content: center;">
 				<div id="gaugeTemperature" style="width:400px; height:320px" class="demo-chart mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop"></div>
 			  </div>
@@ -40,17 +50,27 @@
 			  </div>
 			  
 			  <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-				<p class="mdl-cell mdl-cell--12-col"> Last refreshed: {{timestamp}}</p>
-				<a href="/"  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-cell mdl-cell--2-col">Update</a>
+				<form method="POST" class="demo-form mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+					<div class="mdl-textfield mdl-js-textfield">
+						<input id="numSamplesId" name="numSamples" value="{{numSamples}}" class="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?">
+						<label class="mdl-textfield__label" for="numSamplesId">Number of samples</label>
+						<span class="mdl-textfield__error">Input is not a number!</span>
+					</div>	
+					<input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+				</form>
+				<form method="POST" class="demo-form mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+					<div class="mdl-textfield mdl-js-textfield">
+						<input id="rangeTimeId" name="numSamples" value="{{rangeTime}}" class="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?">
+						<label class="mdl-textfield__label" for="rangeTimeId">Time range</label>
+						<span class="mdl-textfield__error">Input is not a number!</span>
+					</div>	
+					<input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+				</form>
 			  </div>
 			  
-			  <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col">
-				<svg fill="currentColor" viewBox="0 0 500 250" class="demo-graph">
-				  <use xlink:href="#chart" />
-				</svg>
-				<svg fill="currentColor" viewBox="0 0 500 250" class="demo-graph">
-				  <use xlink:href="#chart" />
-				</svg>
+			  <div class="demo-graphs mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="justify-content: center;">
+				<img src="/plots/temperature" class="demo-plot mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+				<img src="/plots/humidity" class="demo-plot mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
 			  </div>
 			</div>
 		  </main>
