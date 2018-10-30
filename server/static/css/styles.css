@@ -218,3 +218,10 @@ _:-ms-input-placeholder, :root .demo-graph {
       -ms-flex-align: center;
           align-items: center;
 }
+
+
+#submitButton {
+	margin-top:10px;
+	margin-bottom: 10px;
+	margin-left:30px;
+}

@@ -21,15 +21,10 @@
 		  <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
 			<header class="demo-drawer-header">
 				<div class="mdl-grid">
-					<p>Hello there, this is data retrieved from a DHT11 sensor.</p>
+					<p>Hello there, and welcome to this demo.</p>
+					<p>The data you see here is retrieved in real-time from a DHT11 sensor.</p>
 					<p>Click on the "UPDATE" button to get fresh data.</p>
-					<p>You can also query historical data using one of the two options:
-						<ul>
-							<li>Number of samples</li>
-							<li>Time range</li>
-						</ul>
-					</p>
-					
+					<p>You can also query historical data by specifying the number of samples to fetch from the database.</p>
 				</div>
 			</header>
 		  </div>
@@ -50,21 +45,16 @@
 			  </div>
 			  
 			  <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-				<form method="POST" class="demo-form mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-					<div class="mdl-textfield mdl-js-textfield">
-						<input id="numSamplesId" name="numSamples" value="{{numSamples}}" class="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?">
+				<h5 class="display-1 mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop ">Enter number of samples to retrieve from the database (default: {{numSamples}})</h5>
+				<form method="POST" class="demo-form mdl-cell mdl-cell--3-col mdl-grid">
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col" >
+						<input id="numSamplesId" name="numSamples" class="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?">
 						<label class="mdl-textfield__label" for="numSamplesId">Number of samples</label>
 						<span class="mdl-textfield__error">Input is not a number!</span>
 					</div>	
-					<input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-				</form>
-				<form method="POST" class="demo-form mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-					<div class="mdl-textfield mdl-js-textfield">
-						<input id="rangeTimeId" name="numSamples" value="{{rangeTime}}" class="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?">
-						<label class="mdl-textfield__label" for="rangeTimeId">Time range</label>
-						<span class="mdl-textfield__error">Input is not a number!</span>
-					</div>	
-					<input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+					<div class="mdl-cell mdl-cell--12-col">
+						<input id="submitButton" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect ">
+					</div>
 				</form>
 			  </div>
 			  
@@ -79,8 +69,8 @@
 		  var g = new JustGage({
 			id: "gaugeTemperature",
 			value: {{temperature}},
-			min: -10,
-			max: 50,
+			min: 0,
+			max: 40,
 			title: "Temperature",
 			label:"°C"
 		  });
