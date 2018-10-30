@@ -1,2 +1,6 @@
+# db
 db/data.db
 tests/data_test.db
+
+# cert
+server/cert

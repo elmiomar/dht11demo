@@ -2,12 +2,15 @@ import sys
 import time
 import sqlite3 as sql
 import Adafruit_DHT
+import json
+import requests
 
-DB_NAME = "db/data.db"
-SLEEP_TIME = 2 # in seconds
 FREQUENCY = 1 # in seconds (every 1 second)
 DHT11_SENSOR = Adafruit_DHT.DHT11
 DHT11_SENSOR_PIN = 4
+HOST = '0.0.0.0'
+PORT = 443
+ENDPOINT = 'dht11'
 
 
 def get_data():
@@ -18,18 +21,14 @@ def get_data():
 	return humidity, temperature
 
 
-def log_data(humidity, temperature):
-	conn = sql.connect(DB_NAME)
-	cursor = conn.cursor()
-	cursor.execute("INSERT INTO dht11data VALUES(datetime('now'), (?), (?))", (temperature, humidity))
-	conn.commit()
-	conn.close()
-
+def send_data(humidity, temperature):
+	data = {'humidity': humidity,'temperature': temperature}
+	r = requests.post('https://' + HOST + ':' + str(PORT) + '/' + ENDPOINT, json=data, verify=False) # verify=False to avoid SSLCertificate error
 
 def main():
 	while True:
-		h, t = get_data()
-		log_data(h, t)
+		humidity, temperature = get_data()
+		send_data(humidity, temperature)
 		time.sleep(FREQUENCY)
 
 main()
